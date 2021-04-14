@@ -1,0 +1,26 @@
+name: "Makefiles"
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  terraform:
+    name: "Unit Tests for Terraform"
+    runs-on: ubuntu-18.04
+    env:
+      working-directory: ./test/terraform
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Make build
+        id: build
+        run: make build
+        working-directory: ${{env.working-directory}}
+
+      - name: Make deploy
+        id: deploy
+        run: make deploy
+        working-directory: ${{env.working-directory}}
