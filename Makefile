@@ -1,3 +1,5 @@
+SHELL	 = /bin/bash
+
 cnf ?= .env
 ifeq ($(shell test -e $(cnf) && echo -n yes),yes)
 	include $(cnf)
