@@ -1,10 +1,12 @@
 SHELL	 = /bin/bash
 
 cnf ?= .env
-ifeq ($(shell test -e $(cnf) && echo -n yes),yes)
-	include $(cnf)
-	export $(shell sed 's/=.*//' $(cnf))
+ifneq ($(shell test -e $(cnf) && echo -n yes),yes)
+	ERROR := $(error $(cnf) file not defined in current directory)
 endif
+
+include $(cnf)
+export $(shell sed 's/=.*//' $(cnf))
 
 ifneq ($(shell test -e $(INCLUDE_MAKEFILE) && echo -n yes),yes)
 	ifdef REMOTE_MAKEFILE
