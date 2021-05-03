@@ -1,10 +1,10 @@
 cnf ?= .env
-ifneq ($(wildcard $(cnf)),)
+ifeq ($(shell test -e $(cnf) && echo -n yes),yes)
 	include $(cnf)
 	export $(shell sed 's/=.*//' $(cnf))
 endif
 
-ifeq ($(wildcard $(INCLUDE_MAKEFILE)),)
+ifneq ($(shell test -e $(INCLUDE_MAKEFILE) && echo -n yes),yes)
 	ifdef REMOTE_MAKEFILE
 		REMOTE_MAKEFILE_RESULT := $(shell curl ${REMOTE_MAKEFILE} -o ${INCLUDE_MAKEFILE})	
 	endif
