@@ -8,7 +8,7 @@ ifndef TERRAFORM_FOLDER
 endif
 
 ifndef TERRAFORM_ENV
-	TERRAFORM_ENV := ""
+	TERRAFORM_ENV := ".env"
 endif
 
 ifndef REPO_NAME
