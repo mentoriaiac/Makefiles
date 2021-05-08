@@ -13,9 +13,9 @@ Este arquivo contém informações essenciais para o funcionamento do projeto e 
 |   Variável         |  Obrigatório   | Descrição     |
 |    :---:           |     :---:      | :---          |
 | INCLUDE_MAKEFILE   |   Sim          | Nome do arquivo `.inc` do Makefile de uma tecnologia que será utilizada, por exemplo, `terraform.inc`. |
-| REMOTE_REPOSITORY  |   Sim          | Caminho para o _raw content_ do repositório do Github que contém o arquivo do item 1. Na maior parte das vezes, será o caminho deste próprio repositório: `https://raw.githubusercontent.com/mentoriaiac/Makefiles/main`. |
+| REMOTE_REPOSITORY  |   Sim          | Caminho para o _raw content_ do repositório do Github que contém o arquivo do item anterior. Na maior parte das vezes, será o caminho deste próprio repositório: `https://raw.githubusercontent.com/mentoriaiac/Makefiles/main`. |
 | TARGET_FOLDER      |   Não          | Diretório alvo dos comandos executados pelo Makefile. Caso não seja informado, será usado o diretório raiz deste projeto. |
-| TARGET_ENV         |   Não          | Arquivo contendo variáveis de ambiente específico de uma tecnologia. Se não informado, será usado o arquivo `.env`. |
+| TARGET_ENV         |   Não          | Arquivo que permite separar as variáveis de ambiente específicas de uma tecnologia. Se não informado, será usado o arquivo `.env`. |
 
 
 
