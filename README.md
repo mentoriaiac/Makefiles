@@ -8,10 +8,15 @@ A proposta é que este Makefile tenha os targets padrão para todo tipo de imple
 
 ### Arquivo .env
 
-Este arquivo contém duas informações essenciais para o funcionamento do projeto e devem ser preenchidas pelo usuário deste repositório:
+Este arquivo contém informações essenciais para o funcionamento do projeto e devem ser preenchidas pelo usuário deste repositório:
 
-1. INCLUDE_MAKEFILE: Contém o nome do arquivo `.inc` do Makefile de uma tecnologia que será utilizada, por exemplo, `terraform.inc`.
-2. REMOTE_REPOSITORY: Contém o caminho para o _raw content_ do repositório do Github que contém o arquivo do item 1. Na maior parte das vezes, será o caminho deste próprio repositório: `https://raw.githubusercontent.com/mentoriaiac/Makefiles/main`.
+|   Variável         |  Obrigatório   | Descrição     |
+|    :---:           |     :---:      | :---          |
+| INCLUDE_MAKEFILE   |   Sim          | Nome do arquivo `.inc` do Makefile de uma tecnologia que será utilizada, por exemplo, `terraform.inc`. |
+| REMOTE_REPOSITORY  |   Sim          | Caminho para o _raw content_ do repositório do Github que contém o arquivo do item 1. Na maior parte das vezes, será o caminho deste próprio repositório: `https://raw.githubusercontent.com/mentoriaiac/Makefiles/main`. |
+| TARGET_FOLDER      |   Não          | Diretório alvo dos comandos executados pelo Makefile. Caso não seja informado, será usado o diretório raiz deste projeto. |
+| TARGET_ENV         |   Não          | Arquivo contendo variáveis de ambiente específico de uma tecnologia. Se não informado, será usado o arquivo `.env`. |
+
 
 
 ### Executar comandos make
@@ -24,7 +29,6 @@ Por exemplo:
 > make help
 help                           This help
 terraform-tfsec                Execute tfsec in terraform files
-terraform-generate-backend     Generate file backend.tf
 terraform-validate             Execute terraform validate in terraform files
 terraform-clean                Remove terraform files untracked in git
 terraform-fmt                  Execute terraform fmt in terraform files
