@@ -15,29 +15,13 @@ A implementação do Makefiles para Terraform está contida no arquivo `terrafor
 
 ## Como utilizar o template
 
-### Configrando _backend_
+### Configurando o _backend_
 
-O Terraform trabalha com [_backend_](https://www.terraform.io/docs/language/settings/_backend_s/index.html) local ou remoto. Para usar este Makefile com **_backend_ local**, não é necessária nenhuma configuração adicional.
+O Terraform trabalha com [_backend_](https://www.terraform.io/docs/language/settings/backends/index.html) local ou remoto. Para usar este Makefile com **_backend_ local**, não é necessária nenhuma configuração adicional.
 
-Para configurar um **_backend_ remoto**, foi disponibilizado um comando adicional para determinadas clouds.
+Para configurar um **_backend_ remoto**, favor acessar a documentação específica:
 
-- Terraform com _backend_ na GCP (depende das configuração de um .target.env_):
-
-```sh
-> make terraform-generate-backend-gcs
-```
-
-### Configurando o arquivo .target.env
-
-Este arquivo deve conter as variáveis de ambiente geralmente utilizadas pelo Terraform para interagir com as clouds (Google Cloud, AWS, Azure, etc.):
-
-
-- Terraform com backend na GCP
-
-|   Variável                      |  Obrigatório   |  _Default_        | Descrição     |
-|    :---:                        |     :---:      |     :---:         | :---          |
-| BUCKET_NAME                     |   Sim          |                   | Nome do bucket na Google Cloud Storage. O bucket informado na deve existir na GCP. |
-| GOOGLE_APPLICATION_CREDENTIALS  |   Sim          |                   | Caminho local para o arquivo de credenciais da GCP no formato JSON.  |
+- [Terraform com _backend_ na GCP](./google-backend)
 
 
 ### Executando o Terraform
