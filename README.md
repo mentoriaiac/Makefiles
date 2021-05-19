@@ -26,7 +26,7 @@ Este arquivo contém informações essenciais para o funcionamento do projeto e 
 
 
 
-### Executar comandos make
+### Executar comandos _make_
 
 Começar utilizando os comandos `make` ou `make help`, para conhecer os comandos disponíveis para o Makefile de tal tecnologia.
 
