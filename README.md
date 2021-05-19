@@ -14,7 +14,7 @@ Este arquivo contém informações essenciais para o funcionamento do projeto e 
 |    :---:           | :---          |     :---:      |     :---          |
 | INCLUDE_MAKEFILE   | Nome do arquivo `.inc` do Makefile de uma tecnologia que será utilizada, por exemplo, `terraform.inc`. **Deve ser alterado**, pois o arquivo padrão apenas informa como utilizar o projeto. |   Sim          |   `how-to-use.inc` |
 | VERSION_MAKEFILE   | Versão do template Makefile que será utilizado. **Não utilizar `main`.**  |   Sim          |   `main`           |
-| REMOTE_REPOSITORY  | Caminho para do repositório do Github que contém os arquivos Makefile base. Na maior parte das vezes, será o caminho deste próprio repositório: `https://raw.githubusercontent.com/mentoriaiac/Makefiles/main`. |   Não          |   `https://raw.githubusercontent.com/mentoriaiac/Makefiles/${VERSION_MAKEFILE}/${INCLUDE_MAKEFILE}` |
+| REMOTE_REPOSITORY  | Caminho para do repositório do Github que contém os arquivos Makefile base. Recomenda-se usar o valor padrão. |   Não          |   `https://raw.githubusercontent.com/mentoriaiac/Makefiles/${VERSION_MAKEFILE}/${INCLUDE_MAKEFILE}` |
 | TARGET_FOLDER      | Diretório alvo dos comandos executados pelo Makefile. Caso não seja informado, será usado o diretório raiz deste projeto. |   Não          |   ""               |
 | TARGET_ENV         | Arquivo que permite separar as variáveis de ambiente específicas de uma tecnologia. |   Não          |   `.target.env`    |
 
