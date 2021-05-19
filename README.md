@@ -4,6 +4,12 @@ Este projeto tem como objetivo fornecer um Makefile base para ser importado no i
 
 A proposta é que este Makefile tenha os targets padrão para todo tipo de implementação recorrente como pipelines de [Terraform](https://www.terraform.io/), [Ansible](https://www.ansible.com/), [Docker](https://www.docker.com/), [Kubernetes](https://kubernetes.io/pt/).
 
+## Requisitos
+
+| Name | Version |
+|------|---------|
+| GNU Make | >= 4.2.1 |
+
 ## Como utilizar o template
 
 ### Arquivo .env
