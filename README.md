@@ -10,12 +10,13 @@ A proposta é que este Makefile tenha os targets padrão para todo tipo de imple
 
 Este arquivo contém informações essenciais para o funcionamento do projeto e devem ser preenchidas pelo usuário deste repositório:
 
-|   Variável         |  Obrigatório   |  _Default_        | Descrição     |
-|    :---:           |     :---:      |     :---:         | :---          |
-| INCLUDE_MAKEFILE   |   Não          |   `terraform.inc` | Nome do arquivo `.inc` do Makefile de uma tecnologia que será utilizada, por exemplo, `terraform.inc`. |
-| REMOTE_REPOSITORY  |   Não          |   `https://raw.githubusercontent.com/mentoriaiac/Makefiles/main` | Caminho para o _raw content_ do repositório do Github que contém o arquivo do item anterior. Na maior parte das vezes, será o caminho deste próprio repositório: `https://raw.githubusercontent.com/mentoriaiac/Makefiles/main`. |
-| TARGET_FOLDER      |   Não          |   ""              | Diretório alvo dos comandos executados pelo Makefile. Caso não seja informado, será usado o diretório raiz deste projeto. |
-| TARGET_ENV         |   Não          |   `.target.env`   | Arquivo que permite separar as variáveis de ambiente específicas de uma tecnologia. |
+|   Variável         | Descrição     | Obrigatório   |  _Default_         |
+|    :---:           | :---          |     :---:      |     :---          |
+| INCLUDE_MAKEFILE   | Nome do arquivo `.inc` do Makefile de uma tecnologia que será utilizada, por exemplo, `terraform.inc`. **Deve ser alterado**, pois o arquivo padrão apenas informa como utilizar o projeto. |   Sim          |   `how-to-use.inc` |
+| VERSION_MAKEFILE   | Versão do template Makefile que será utilizado. **Não utilizar `main`.**  |   Sim          |   `main`           |
+| REMOTE_REPOSITORY  | Caminho para do repositório do Github que contém os arquivos Makefile base. Na maior parte das vezes, será o caminho deste próprio repositório: `https://raw.githubusercontent.com/mentoriaiac/Makefiles/main`. |   Não          |   `https://raw.githubusercontent.com/mentoriaiac/Makefiles/${VERSION_MAKEFILE}/${INCLUDE_MAKEFILE}` |
+| TARGET_FOLDER      | Diretório alvo dos comandos executados pelo Makefile. Caso não seja informado, será usado o diretório raiz deste projeto. |   Não          |   ""               |
+| TARGET_ENV         | Arquivo que permite separar as variáveis de ambiente específicas de uma tecnologia. |   Não          |   `.target.env`    |
 
 
 
