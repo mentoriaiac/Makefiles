@@ -8,21 +8,9 @@ ifndef TARGET_FOLDER
 endif
 
 ifndef TARGET_ENV
-	TARGET_ENV := ".env"
+	ERROR := $(error TARGET_ENV file not provided, please create it)
 endif
-
-ifndef REPO_NAME
-	REPO_NAME   := $(shell basename $(CURDIR))
-	BRANCH_NAME := $(shell git rev-parse --abbrev-ref HEAD)
-	COMMIT_SHA  := $(shell git rev-parse --short HEAD)
-endif
-
-PROJECT_NAME := ${REPO_NAME}
-
-env := ${BRANCH_NAME}
-
-TF_VAR_env := ${env}
-TF_VAR_project_name := ${PROJECT_NAME}
+BUCKET_NAME := $(shell awk -F'=' '/BUCKET_NAME/{print $$2}' ${TARGET_ENV})
 
 # HELP
 # This will output the help for each task
@@ -42,12 +30,19 @@ terraform-validate: ## Execute terraform validate in terraform files
 
 terraform-clean: ## Remove terraform files untracked in git
 	echo "STEP: terraform-clean - Remove terraform files untracked in git"
-	cd ./${TARGET_FOLDER}/ && \
-	rm -rf ${TFPLAN}
+	rm -rf ./${TARGET_FOLDER}/.terraform/ && \
+	rm -rf ./${TARGET_FOLDER}/.terraform.* && \
+	rm -f ./${TARGET_FOLDER}/.terraform.lock.hcl && \
+	rm -f ${TFPLAN}
 
 terraform-fmt: ## Execute terraform fmt in terraform files
 	echo "STEP: terraform-fmt - Execute terraform fmt in terraform files"
 	docker run --rm -v $$PWD/${TARGET_FOLDER}:/app -w /app hashicorp/terraform:$(TERRAFORM_VERSION) fmt -recursive
+
+terraform-generate-backend-gcs:  ## Generate file backend.tf on Google Cloud Storage
+	echo "STEP: terraform-generate-backend - Generate file backend.tf"
+	echo -e "terraform {\nbackend \"gcs\" { bucket  = \"$(BUCKET_NAME)\" }\n}" > ./${TARGET_FOLDER}/backend.tf && \
+	terraform fmt
 
 terraform-init: ## Execute terraform init in terraform files
 	echo "STEP: terraform-init - Execute terraform init in terraform files"
