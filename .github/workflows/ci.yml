@@ -9,18 +9,13 @@ jobs:
     name: "Unit Tests for Terraform"
     runs-on: ubuntu-18.04
     env:
-      working-directory: ./test/terraform
+      working-directory: ./examples/terraform/local-backend
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Make build
-        id: build
-        run: make build
-        working-directory: ${{env.working-directory}}
-
-      - name: Make deploy
-        id: deploy
-        run: make deploy
+      - name: Make Test
+        id: test
+        run: make test
         working-directory: ${{env.working-directory}}
