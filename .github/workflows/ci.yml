@@ -5,6 +5,18 @@ on:
   pull_request:
 
 jobs:
+  download-remote:
+    name: "Test remote Makefile download"
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: Create test directory
+        run: |
+          mkdir -p ./test-download
+          cp -a Makefile ./test-download
+      - name: Run make command
+        run: make
+
   terraform:
     name: "Unit Tests for Terraform"
     runs-on: ubuntu-18.04
