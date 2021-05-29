@@ -16,8 +16,11 @@ jobs:
         run: |
           mkdir -p ./test-download
           cp -a Makefile ./test-download
+          cp -a .env ./test-download
       - name: Run make command
-        run: make
+        run: |
+          cd ./test-download
+          make
 
   terraform:
     name: "Unit Tests for Terraform"
