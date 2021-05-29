@@ -8,19 +8,23 @@ jobs:
   download-remote:
     name: "Test remote Makefile download"
     runs-on: ubuntu-18.04
+    env:
+      version-makefile: main
+      test-directory: ./test-download
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Create test directory
         run: |
-          mkdir -p ./test-download
-          cp -a Makefile ./test-download
-          cp -a .env ./test-download
-      - name: Run make command
+          mkdir -p ${{ env.test-directory }}
+          cp -a Makefile ${{ env.test-directory }}
+          cp -a .env ${{ env.test-directory }}
+      - name: Test downloading version ${{ env.version-makefile }}
         run: |
-          cd ./test-download
+          sed -i -e s/VERSION_MAKEFILE=main/VERSION_MAKEFILE=${{ env.version-makefile }}/ .env
           make
+        working-directory: ${{ env.test-directory }}
 
   terraform:
     name: "Unit Tests for Terraform"
@@ -34,4 +38,4 @@ jobs:
       - name: Make Test
         id: test
         run: make test
-        working-directory: ${{env.working-directory}}
+        working-directory: ${{ env.working-directory }}
