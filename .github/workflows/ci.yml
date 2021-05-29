@@ -22,7 +22,7 @@ jobs:
           cp -a .env ${{ env.test-directory }}
       - name: Test downloading version ${{ env.version-makefile }}
         run: |
-          sed -i -e s/VERSION_MAKEFILE=main/VERSION_MAKEFILE=${{ env.version-makefile }}/ .env
+          sed -i s/VERSION_MAKEFILE=main/VERSION_MAKEFILE=${{ env.version-makefile }}/ .env
           make
         working-directory: ${{ env.test-directory }}
 
