@@ -17,7 +17,7 @@ A implementação do Makefiles para Terraform está contida no arquivo `terrafor
 
 ### Configurando o _backend_
 
-O Terraform trabalha com [_backend_](https://www.terraform.io/docs/language/settings/_backend_s/index.html) local ou remoto. Para usar este Makefile com **_backend_ local**, não é necessária nenhuma configuração adicional.
+Para usar este Makefile com **_backend_ local**, não é necessária nenhuma configuração adicional.
 
 ### Configurando o arquivo .target.env
 
