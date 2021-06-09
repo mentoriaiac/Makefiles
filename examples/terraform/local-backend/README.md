@@ -15,9 +15,22 @@ A implementação do Makefiles para Terraform está contida no arquivo `terrafor
 
 ## Como utilizar o template
 
-### Configrando _backend_
+### Configurando o _backend_
 
 O Terraform trabalha com [_backend_](https://www.terraform.io/docs/language/settings/_backend_s/index.html) local ou remoto. Para usar este Makefile com **_backend_ local**, não é necessária nenhuma configuração adicional.
+
+### Configurando o arquivo .target.env
+
+Neste arquivo podem ser informadas quantas variáveis forem necessárias para consumo do módulo, no formato `TF_VAR_`, conforme [documentação oficial](https://www.terraform.io/docs/language/values/variables.html#environment-variables).
+
+Por exemplo:
+
+```
+TF_VAR_nome=exemplo
+TF_VAR_numero=123
+TF_VAR_lista=['item', 'item2']
+
+```
 
 ### Executando o Terraform
 
