@@ -18,7 +18,7 @@ A implementação do Makefiles para Terraform está contida no arquivo `terrafor
 
 ### Configurando o arquivo .target.env
 
-Este arquivo deve conter, obrigatoriamente, as variáveis de ambiente (`BUCKET_NAME` e `GOOGLE_APPLICATION_CREDENTIALS`) utilizadas pelo Terraform para interagir Google Cloud Platform.
+Este arquivo deve conter, obrigatoriamente, as variáveis de ambiente (`BUCKET_NAME` e `GOOGLE_APPLICATION_CREDENTIALS`) utilizadas pelo Terraform para interagir com a Google Cloud Platform.
 
 Também podem ser informadas neste arquivo, quantas variáveis forem necessárias para consumo do módulo, no formato `TF_VAR_`, conforme [documentação oficial](https://www.terraform.io/docs/language/values/variables.html#environment-variables).
 
