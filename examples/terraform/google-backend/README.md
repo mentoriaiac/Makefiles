@@ -18,13 +18,28 @@ A implementação do Makefiles para Terraform está contida no arquivo `terrafor
 
 ### Configurando o arquivo .target.env
 
-Este arquivo deve conter as variáveis de ambiente utilizadas pelo Terraform para interagir Google Cloud Platform:
+Este arquivo deve conter, obrigatoriamente, as variáveis de ambiente (`BUCKET_NAME` e `GOOGLE_APPLICATION_CREDENTIALS`) utilizadas pelo Terraform para interagir com a Google Cloud Platform.
+
+Também podem ser informadas neste arquivo, quantas variáveis forem necessárias para consumo do módulo, no formato `TF_VAR_`, conforme [documentação oficial](https://www.terraform.io/docs/language/values/variables.html#environment-variables).
 
 |   Variável                      |  Obrigatório   |  _Default_        | Descrição     |
 |    :---:                        |     :---:      |     :---:         | :---          |
-| BUCKET_NAME                     |   Sim          |                   | Nome do bucket na Google Cloud Storage. O bucket informado na deve existir na GCP. |
-| GOOGLE_APPLICATION_CREDENTIALS  |   Sim          |                   | Caminho local para o arquivo de credenciais da GCP no formato JSON.  |
+| BUCKET_NAME                     |   Sim          |       n/a         | Nome do bucket na Google Cloud Storage. O bucket informado na deve existir na GCP. |
+| GOOGLE_APPLICATION_CREDENTIALS  |   Sim          |       n/a         | Caminho local para o arquivo de credenciais da GCP no formato JSON.  |
+| TF_VAR_\<nome>                  |   Não          |       n/a         | Variável de entrada do módulo utilizado.  |
 
+Por exemplo:
+
+```
+# Variáveis para backend GCP
+BUCKET_NAME=dummy-bucket
+GOOGLE_APPLICATION_CREDENTIALS=./dummy-file.json
+# Variáveis do módulo
+TF_VAR_nome=exemplo
+TF_VAR_numero=123
+TF_VAR_lista=['item', 'item2']
+
+```
 
 ### Criando o arquivo backend.tf
 
