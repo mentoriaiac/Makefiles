@@ -10,12 +10,12 @@ ifndef TARGET_ENV
 endif
 BUCKET_NAME := $(shell awk -F'=' '/BUCKET_NAME/{print $$2}' ${TARGET_ENV})
 
-ifdef TERRAFORM_VERSION
-	TERRAFORM_VERSION = 1.0.0
+ifndef TERRAFORM_VERSION
+	TERRAFORM_VERSION=1.0.0
 endif
 
-ifdef TFPLAN
-	TFPLAN = tfplan
+ifndef TFPLAN
+	TFPLAN=tfplan
 endif
 
 # HELP
