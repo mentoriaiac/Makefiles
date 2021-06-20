@@ -24,17 +24,10 @@ Este arquivo contém informações essenciais para o funcionamento do projeto e 
 | TARGET_FOLDER      | Diretório alvo dos comandos executados pelo Makefile. Caso não seja informado, será usado o diretório raiz deste projeto. |   Não          |   ""               |
 | TARGET_ENV         | Arquivo que permite separar as variáveis de ambiente específicas de uma tecnologia. |   Não          |   `.target.env`    |
 
-
-
 ### Executar comandos _make_
 
 Começar utilizando os comandos `make` ou `make help`, para conhecer os comandos disponíveis para o Makefile de tal tecnologia.
 
-
 ### Tecnologias disponíveis
 
 - [Terraform](./examples/terraform)
-  
-
-
-

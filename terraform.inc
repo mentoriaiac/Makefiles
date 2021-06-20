@@ -1,7 +1,5 @@
 MAKEFLAGS  	      += --silent
 SHELL      	      = /bin/bash
-TERRAFORM_VERSION = 0.14.0
-TFPLAN = tfplan
 
 ifndef TARGET_FOLDER
 	TARGET_FOLDER := ""
@@ -11,6 +9,14 @@ ifndef TARGET_ENV
 	ERROR := $(error TARGET_ENV file not provided, please create it)
 endif
 BUCKET_NAME := $(shell awk -F'=' '/BUCKET_NAME/{print $$2}' ${TARGET_ENV})
+
+ifndef TERRAFORM_VERSION
+	TERRAFORM_VERSION=1.0.0
+endif
+
+ifndef TFPLAN
+	TFPLAN=tfplan
+endif
 
 # HELP
 # This will output the help for each task
