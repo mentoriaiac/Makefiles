@@ -72,3 +72,4 @@ apply: terraform-apply ## alias for terraform apply
 destroy: terraform-destroy ## alias for terraform destroy
 clean: terraform-clean ## alias for terraform clean
 test: plan terraform-apply terraform-destroy ## Execute terraform plan, apply, destroy in terraform files
+tfsec: terraform-tfsec ## alias for terraform tfsec
