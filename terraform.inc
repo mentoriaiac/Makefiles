@@ -28,7 +28,7 @@ help: ## This help
 
 terraform-tfsec: ## Execute tfsec in terraform files
 	echo "STEP: terraform-tfsec - Execute tfsec in terraform files"
-	docker run --rm -v $$PWD/${TARGET_FOLDER}:/app -w /app tfsec/tfsec -u `stat -c "%u:%g" ./` . --no-color
+	docker run --rm -v $$PWD/${TARGET_FOLDER}:/app -w /app tfsec/tfsec `stat ./` . --no-color
 
 terraform-validate: ## Execute terraform validate in terraform files
 	echo "STEP: terraform-validate - Execute terraform validate in terraform files"
@@ -72,3 +72,4 @@ apply: terraform-apply ## alias for terraform apply
 destroy: terraform-destroy ## alias for terraform destroy
 clean: terraform-clean ## alias for terraform clean
 test: plan terraform-apply terraform-destroy ## Execute terraform plan, apply, destroy in terraform files
+tfsec: terraform-tfsec ## alias for terraform tfsec
