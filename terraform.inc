@@ -28,7 +28,7 @@ help: ## This help
 
 terraform-tfsec: ## Execute tfsec in terraform files
 	echo "STEP: terraform-tfsec - Execute tfsec in terraform files"
-	docker run --rm -v $$PWD/${TARGET_FOLDER}:/app -w /app tfsec/tfsec -u `stat -c "%u:%g" ./` . --no-color
+	docker run --rm -v $$PWD/${TARGET_FOLDER}:/app -w /app tfsec/tfsec:v0.58 . -u `stat -c "%u:%g" ./` . --no-color
 
 terraform-validate: ## Execute terraform validate in terraform files
 	echo "STEP: terraform-validate - Execute terraform validate in terraform files"
