@@ -2,6 +2,9 @@ name: "Makefiles"
 
 on:
   push:
+    branches:
+      - main
+      - feature/tfsec-version
   pull_request:
 
 jobs:
