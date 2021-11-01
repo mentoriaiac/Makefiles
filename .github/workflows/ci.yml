@@ -39,3 +39,7 @@ jobs:
         id: test
         run: make test
         working-directory: ${{ env.working-directory }}
+      - name: Make tfsec
+        id: sec
+        run: make terraform-tfsec
+        working-directory: ${{ env.working-directory }}

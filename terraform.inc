@@ -18,6 +18,16 @@ ifndef TFPLAN
 	TFPLAN=tfplan
 endif
 
+# Verify the OS
+UNAME := $(shell uname -s)
+ifeq ($(UNAME), Linux)
+    GET_ID := $(shell stat -c "%u:%g" ./)
+else ifeq ($(UNAME), Darwin)
+	GET_ID := $(shell stat -f "%u:%g" ./)
+else
+	ERROR := $(error Comando somente suportado em Linux/Mac)
+endif
+
 # HELP
 # This will output the help for each task
 # thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
@@ -28,7 +38,7 @@ help: ## This help
 
 terraform-tfsec: ## Execute tfsec in terraform files
 	echo "STEP: terraform-tfsec - Execute tfsec in terraform files"
-	docker run --rm -v $$PWD/${TARGET_FOLDER}:/app -w /app tfsec/tfsec:v0.58 . -u `stat -c "%u:%g" ./` . --no-color
+	docker run --rm -v $$PWD/${TARGET_FOLDER}:/app -w /app -u $(GET_ID) tfsec/tfsec . --no-color
 
 terraform-validate: ## Execute terraform validate in terraform files
 	echo "STEP: terraform-validate - Execute terraform validate in terraform files"
@@ -52,19 +62,19 @@ terraform-generate-backend-gcs:  ## Generate file backend.tf on Google Cloud Sto
 
 terraform-init: ## Execute terraform init in terraform files
 	echo "STEP: terraform-init - Execute terraform init in terraform files"
-	docker run --rm -v $$PWD/${TARGET_FOLDER}:/app -w /app --env-file $(TARGET_ENV) -u `stat -c "%u:%g" ./` hashicorp/terraform:$(TERRAFORM_VERSION) init
+	docker run --rm -v $$PWD/${TARGET_FOLDER}:/app -w /app --env-file $(TARGET_ENV) -u $(GET_ID) hashicorp/terraform:$(TERRAFORM_VERSION) init
 
 terraform-plan: terraform-validate  ## Execute terraform validate, tfsec and plan in terraform files
 	echo "STEP: terraform-plan - Execute terraform validate, tfsec and plan in terraform files"
-	docker run --rm -v $$PWD/${TARGET_FOLDER}:/app -w /app --env-file $(TARGET_ENV) -u `stat -c "%u:%g" ./` hashicorp/terraform:$(TERRAFORM_VERSION) plan -out ${TFPLAN}
+	docker run --rm -v $$PWD/${TARGET_FOLDER}:/app -w /app --env-file $(TARGET_ENV) -u $(GET_ID) hashicorp/terraform:$(TERRAFORM_VERSION) plan -out ${TFPLAN}
 
 terraform-apply: ## Execute terraform apply in terraform files
 	echo "STEP: terraform-apply - Execute terraform apply in terraform files"
-	docker run --rm -v $$PWD/${TARGET_FOLDER}:/app -w /app --env-file $(TARGET_ENV) -u `stat -c "%u:%g" ./` hashicorp/terraform:$(TERRAFORM_VERSION) apply -auto-approve ${TFPLAN}
+	docker run --rm -v $$PWD/${TARGET_FOLDER}:/app -w /app --env-file $(TARGET_ENV) -u $(GET_ID) hashicorp/terraform:$(TERRAFORM_VERSION) apply -auto-approve ${TFPLAN}
 	
 terraform-destroy: ## Execute terraform destroy in terraform files
 	echo "STEP: terraform-destroy - Execute terraform destroy in terraform files"
-	docker run --rm -v $$PWD/${TARGET_FOLDER}:/app -w /app --env-file $(TARGET_ENV) -u `stat -c "%u:%g" ./` hashicorp/terraform:$(TERRAFORM_VERSION) destroy -auto-approve
+	docker run --rm -v $$PWD/${TARGET_FOLDER}:/app -w /app --env-file $(TARGET_ENV) -u $(GET_ID) hashicorp/terraform:$(TERRAFORM_VERSION) destroy -auto-approve
 
 fmt: terraform-fmt ## alias for terraform fmt
 plan: fmt terraform-init terraform-plan ## Execute terraform fmt, init, plan in terraform files
